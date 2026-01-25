@@ -1,0 +1,25 @@
+pipeline {
+agent any
+stages {
+stage('Install') {
+steps {
+sh 'npm install --prefix backend'
+}
+}
+stage('SonarQube Analysis') {
+steps {
+echo 'Run SonarQube scan here'
+}
+}
+stage('Docker Build') {
+steps {
+sh 'docker build -t high-traffic-app ./backend'
+}
+}
+stage('Deploy to Minikube') {
+steps {
+sh 'kubectl apply -f k8s/'
+}
+}
+}
+}

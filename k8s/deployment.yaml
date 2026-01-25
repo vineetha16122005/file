@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+name: high-traffic-app
+spec:
+replicas: 3
+selector:
+matchLabels:
+app: high-traffic
+template:
+metadata:
+labels:
+app: high-traffic
+spec:
+containers:
+- name: app
+image: high-traffic-app:latest
+ports:
+- containerPort: 3000
